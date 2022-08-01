@@ -175,10 +175,10 @@ AppAsset::register($this);
                 <div class="col-sm-6 col-lg-3">
                     <div class="social_icon">
                         <ul>
-                            <li><a href="#"><img src="template/images/fb-icon.png"></a></li>
-                            <li><a href="#"><img src="template/images/twitter-icon.png"></a></li>
+                            <li><a href="#"><img src="template/images/face-icon.png"></a></li>
+                            <li><a href="#"><img src="template/images/tele-icon.png"></a></li>
                             <li><a href="#"><img src="template/images/in-icon.png"></a></li>
-                            <li><a href="#"><img src="template/images/google-icon.png"></a></li>
+                            <li><a href="#"><img src="template/images/youtube-icon.png"></a></li>
                         </ul>
                     </div>
                 </div>
