@@ -1,10 +1,11 @@
 <?php
 
 use backend\models\Categories;
+use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\Category */
@@ -17,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Kategoriya qo`shish  <i class="fa fa-plus"></i>', ['create'], ['class' => 'btn btn-info']) ?>
-        <?= Html::a('  <i class="fa fa-refresh"></i>', ['index'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a(' <i class="fa fa-refresh"></i>', ['index'], ['class' => 'btn btn-info']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -52,25 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'urlCreator' => function ($action, Categories $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  },
-                'template' => '{view} {update} {delete}',
-                'buttons' =>[
-                    'view'=>function($url, $model){
-                    return Html::a('<i class="fa fa-eye" style="color: #fff;"></i>', ['category/view', 'id'=>$model->id], ['class'=>'btn btn-info']);
-                   },
-                    'update'=>function($url, $model){
-                        return Html::a('<i class="fa fa-pencil" style="color: #fff;"></i>', ['category/update', 'id'=>$model->id], ['class'=>'btn btn-info']);
-                    },
-                    'delete'=>function($url, $model){
-                        return Html::a('<i class="fa fa-trash" style="color: #fff;"></i>', ['category/delete', 'id'=>$model->id],
-                            [
-                                    'class'=>'btn btn-danger',
-                                    'data' => [
-                                        'confirm' => 'Haqiqatan ham bu elementni o`chirib tashlamoqchimisiz?',
-                                        'method' => 'post',
-                                    ],
-                            ]);
-                    }
-                ],
+
             ],
         ],
     ]); ?>

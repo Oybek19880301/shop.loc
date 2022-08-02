@@ -19,9 +19,9 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Shop Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Mahsulotlar', 'icon' => 'fas fa-shopping-cart', 'url' => ['#']],
+                    ['label' => 'Mahsulotlar', 'icon' => 'fas fa-shopping-cart', 'url' => ['production/index']],
                     ['label' => 'Kategoriyalar', 'icon' => 'fas fa-cart-plus', 'url' => ['category/index']],
-                    ['label' => 'Konfiguratsiyalr', 'icon' => ' fa-gears (alias)', 'url' => ['#']],
+                    ['label' => 'Konfiguratsiyalr', 'icon' => ' fa-gears (alias)', 'url' => ['configs/update?id=2']],
                     ['label' => 'Xabarlar', 'icon' => ' fa-envelope-o', 'url' => ['#']],
                     ['label' => 'Foydalanuvchilar', 'icon' => ' fa-users', 'url' => ['#']],
                     ['label' => 'Ma`lumotlarim', 'icon' => ' fa-file-text', 'url' => ['#']],
