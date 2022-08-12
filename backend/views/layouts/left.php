@@ -22,9 +22,9 @@
                     ['label' => 'Mahsulotlar', 'icon' => 'fas fa-shopping-cart', 'url' => ['production/index']],
                     ['label' => 'Kategoriyalar', 'icon' => 'fas fa-cart-plus', 'url' => ['category/index']],
                     ['label' => 'Konfiguratsiyalr', 'icon' => ' fa-gears (alias)', 'url' => ['configs/update?id=2']],
-                    ['label' => 'Xabarlar', 'icon' => ' fa-envelope-o', 'url' => ['#']],
-                    ['label' => 'Foydalanuvchilar', 'icon' => ' fa-users', 'url' => ['#']],
-                    ['label' => 'Ma`lumotlarim', 'icon' => ' fa-file-text', 'url' => ['#']],
+                    ['label' => 'Xabarlar', 'icon' => ' fa-envelope-o', 'url' => ['contacts/index']],
+                    ['label' => 'Foydalanuvchilar', 'icon' => ' fa-users', 'url' => ['site/users']],
+                    ['label' => 'Buyurtmalar', 'icon' => 'fa fa-flag-o', 'url' => ['orders/index']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
 
                 ],

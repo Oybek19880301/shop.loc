@@ -32,7 +32,7 @@ class Config extends \yii\db\ActiveRecord
     {
         return [
             [['phone'], 'string', 'max' => 13],
-            [['email', 'telegram', 'instagram', 'youtube', 'address'], 'string', 'max' => 255],
+            [['email', 'telegram', 'instagram', 'youtube', 'facebook', 'address'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,13 +42,14 @@ class Config extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'phone' => 'Phone',
-            'email' => 'Email',
-            'telegram' => 'Telegram',
+            'id'        => 'ID',
+            'phone'     => 'Phone',
+            'email'     => 'Email',
+            'telegram'  => 'Telegram',
             'instagram' => 'Instagram',
-            'youtube' => 'Youtube',
-            'address' => 'Address',
+            'facebook'  => 'Facebook',
+            'youtube'   => 'Youtube',
+            'address'   => 'Address',
         ];
     }
 }

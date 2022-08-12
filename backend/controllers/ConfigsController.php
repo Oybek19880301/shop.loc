@@ -3,15 +3,12 @@
 namespace backend\controllers;
 
 use backend\models\Configs;
-use backend\models\search\ConfigsSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ConfigsController implements the CRUD actions for Configs model.
  */
-class ConfigsController extends Controller
+class ConfigsController extends AuthController
 {
 
     /**

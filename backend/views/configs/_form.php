@@ -19,10 +19,6 @@ use yii\widgets\ActiveForm;
 
                 <?= $form->field($model, 'telegram')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-                <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
                 <div class="form-group">
                     <?= Html::submitButton('Saqlash', ['class' => 'btn btn-info']) ?>
                 </div>
@@ -30,11 +26,11 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="col-md-6">
 
-                <?= $form->field($model, 'telegram')->textInput(['maxlength' => true]) ?>
-
                 <?= $form->field($model, 'instagram')->textInput(['maxlength' => true]) ?>
 
                 <?= $form->field($model, 'youtube')->textInput(['maxlength' => true]) ?>
+
+                <?= $form->field($model, 'facebook')->textInput(['maxlength' => true]) ?>
 
                 <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
             </div>

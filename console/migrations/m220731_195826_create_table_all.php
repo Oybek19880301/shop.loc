@@ -20,16 +20,16 @@ class m220731_195826_create_table_all extends Migration
         ]);
 
         $this->createTable('productions',[
-            'id'         => $this->primaryKey(),
-            'name'       => $this->string(55)->null(),
+            'id'          => $this->primaryKey(),
+            'name'        => $this->string(55)->null(),
             'category_id' => $this->integer()->null(),
             'status' => $this->integer()->defaultValue(1),
             'default_img' => $this->string(255),
             'count'       => $this->integer()->null(),
             'price'       => $this->integer()->null(),
-            'degree'   => $this->integer()->null(),
-            'create_at'  => $this->integer()->null(),
-            'update_at'  => $this->integer()->null(),
+            'degree'      => $this->integer()->null(),
+            'create_at'   => $this->integer()->null(),
+            'update_at'   => $this->integer()->null(),
         ]);
 
         $this->createTable('images',[
@@ -46,7 +46,7 @@ class m220731_195826_create_table_all extends Migration
             'phone'      => $this->string(13)->null(),
             'email'      => $this->string(255)->null(),
             'message'    => $this->text()->null(),
-            'status'      => $this->integer()->defaultValue(0),
+            'status'     => $this->integer()->defaultValue(0),
             'create_at'  => $this->integer()->null(),
             'update_at'  => $this->integer()->null(),
         ]);
@@ -57,6 +57,7 @@ class m220731_195826_create_table_all extends Migration
             'email'      => $this->string(255)->null(),
             'telegram'   => $this->string()->null(),
             'instagram'  => $this->string()->null(),
+            'facebook'   => $this->string()->null(),
             'youtube'    => $this->string()->null(),
             'address'    => $this->string()->null(),
         ]);
@@ -75,6 +76,7 @@ class m220731_195826_create_table_all extends Migration
         $this->dropTable('images');
         $this->dropTable('contact');
         $this->dropTable('config');
+
     }
 
     /*

@@ -108,4 +108,14 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionEmail()
+    {
+        Yii::$app->mailer->compose()
+            ->setFrom('oraxmatov2707@gmail.com')
+            ->setTo('oraxmatov2707@gmail.com')
+            ->setSubject('Shop.loc')
+            ->setHtmlBody('<b>Pochta bordi</b>')
+            ->send();
+    }
+
 }

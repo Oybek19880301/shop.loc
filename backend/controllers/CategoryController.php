@@ -3,19 +3,18 @@
 namespace backend\controllers;
 
 use backend\models\Categories;
-use backend\models\search\Category;
-use yii\web\Controller;
+use backend\models\search\CategorySearch;
 use yii\web\NotFoundHttpException;
 
 
 /**
  * CategoryController implements the CRUD actions for Categories model.
  */
-class CategoryController extends Controller
+class CategoryController extends AuthController
 {
     public function actionIndex()
     {
-        $searchModel = new Category();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [

@@ -2,58 +2,18 @@
 
 namespace backend\controllers;
 
+use backend\models\Orders;
+use backend\models\User;
 use common\models\LoginForm;
+
 use Yii;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\Response;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends AuthController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
 
     /**
      * Displays homepage.
@@ -63,7 +23,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        return $this->render('index');
+        $countOrders = Orders::find()->count('id');
+        return $this->render('index', compact('countOrders'));
     }
 
     /**
@@ -101,5 +62,11 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionUsers()
+    {
+        $data = User::find()->asArray()->all();
+        return $this->render('users', compact('data'));
     }
 }

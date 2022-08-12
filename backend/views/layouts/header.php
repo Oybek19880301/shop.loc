@@ -1,8 +1,15 @@
 <?php
+
+use backend\models\Contacts;
+use backend\models\Orders;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+
+$var = Contacts::find()->where(['status'=>0])->count('id');
+$orderCount = Orders::find()->where(['status'=>0])->count('id');
 ?>
 
 <header class="main-header">
@@ -21,9 +28,11 @@ use yii\helpers\Html;
 
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="<?= Url::to(['contacts/index'])?>">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">4</span>
+                        <?php if ($var != 0): ?>
+                           <span class="label label-success"><?= $var ?></span>
+                        <?php endif; ?>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have 4 messages</li>
@@ -106,7 +115,9 @@ use yii\helpers\Html;
                 <li class="dropdown tasks-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag-o"></i>
-                        <span class="label label-danger">9</span>
+                        <?php if ($orderCount != 0): ?>
+                            <span class="label label-danger"><?= $orderCount?></span>
+                        <?php endif; ?>
                     </a>
 
                 </li>
@@ -131,9 +142,6 @@ use yii\helpers\Html;
                         <!-- Menu Body -->
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            </div>
                             <div class="pull-right">
                                 <?= Html::a(
                                     'Chiqish',

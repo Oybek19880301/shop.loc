@@ -4,12 +4,12 @@ namespace backend\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Production as ProductionModel;
+use backend\models\Categories;
 
 /**
- * Production represents the model behind the search form of `backend\models\Production`.
+ * CategorySearch represents the model behind the search form of `backend\models\Categories`.
  */
-class Production extends ProductionModel
+class CategorySearch extends Categories
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class Production extends ProductionModel
     public function rules()
     {
         return [
-            [['id', 'category_id', 'status', 'count', 'price', 'degree', 'create_at', 'update_at'], 'integer'],
-            [['name', 'default_img'], 'safe'],
+            [['id', 'create_at', 'update_at'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class Production extends ProductionModel
      */
     public function search($params)
     {
-        $query = ProductionModel::find();
+        $query = Categories::find();
 
         // add conditions that should always apply here
 
@@ -59,17 +59,11 @@ class Production extends ProductionModel
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'status' => $this->status,
-            'count' => $this->count,
-            'price' => $this->price,
-            'degree' => $this->degree,
             'create_at' => $this->create_at,
             'update_at' => $this->update_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'default_img', $this->default_img]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

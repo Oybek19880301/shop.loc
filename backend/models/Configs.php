@@ -12,21 +12,22 @@ class Configs extends Config
         return [
             [['phone'], 'required'],
             [['phone'], 'string', 'max' => 13],
-            [['email', 'telegram', 'instagram', 'youtube', 'address'], 'required'],
-            [['email', 'telegram', 'instagram', 'youtube', 'address'], 'string', 'max' => 255],
+            [['email', 'telegram', 'instagram', 'youtube', 'facebook', 'address'], 'required'],
+            [['email', 'telegram', 'instagram', 'youtube', 'facebook', 'address'], 'string', 'max' => 255],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'phone' => 'Telfon raqam',
-            'email' => 'Email',
-            'telegram' => 'Telegram',
+            'id'        => 'ID',
+            'phone'     => 'Telfon raqam',
+            'email'     => 'Email',
+            'telegram'  => 'Telegram',
             'instagram' => 'Instagram',
-            'youtube' => 'Youtube',
-            'address' => 'Address',
+            'facebook'  => 'Facebook',
+            'youtube'   => 'Youtube',
+            'address'   => 'Address',
         ];
     }
 

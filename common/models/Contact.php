@@ -47,13 +47,13 @@ class Contact extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'phone' => 'Phone',
+            'name' => 'Nomi',
+            'phone' => 'Telefon',
             'email' => 'Email',
-            'message' => 'Message',
-            'status' => 'Status',
-            'create_at' => 'Create At',
-            'update_at' => 'Update At',
+            'message' => 'Xabar mazmuni',
+            'status' => 'Holati',
+            'create_at' => 'Yaratilgan vaqti',
+            'update_at' => 'Yangilangan vaqti',
         ];
     }
 }

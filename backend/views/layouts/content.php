@@ -37,9 +37,9 @@ use dmstr\widgets\Alert;
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Version</b> 2.0
+        <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2021-<?= date('Y')?> <a href=""></a>.</strong> All rights
     reserved.
 </footer>
 
@@ -233,3 +233,19 @@ use dmstr\widgets\Alert;
 <!-- Add the sidebar's background. This div must be placed
      immediately after the control sidebar -->
 <div class='control-sidebar-bg'></div>
+
+<style>
+  .breadcrumb li {
+      background-color: #0a568c;
+      padding: 6px;
+  }
+
+  .content-header>.breadcrumb>li>a  {
+      color: #fff;
+  }
+
+  .breadcrumb > .active{
+      color: #fff;
+  }
+
+</style>

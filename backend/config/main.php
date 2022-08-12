@@ -1,7 +1,5 @@
 <?php
 
-use kartik\grid\Module;
-
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -14,16 +12,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [
-        'gridview' =>  [
-            'class' => Module::class
-            // enter optional module parameters below - only if you need to
-            // use your own export download action or custom translation
-            // message source
-            // 'downloadAction' => 'gridview/export/download',
-            // 'i18n' => []
-        ]
-    ],
     'components' => [
         'request' => [
             'baseUrl' => '/admin',
@@ -47,9 +35,9 @@ return [
                 ],
             ],
         ],
-        'errorHandler' => [
-            'errorAction' => '_site/error',
-        ],
+//        'errorHandler' => [
+//            'errorAction' => '_site/error',
+//        ],
 
         'urlManager' => [
             'enablePrettyUrl' => true,
