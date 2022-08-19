@@ -2,74 +2,27 @@
 
 namespace frontend\controllers;
 
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
+use common\models\User;
+use frontend\models\Config;
+use frontend\models\Contacts;
+use frontend\models\Production;
+use frontend\models\ResetPassword;
 use Yii;
-use yii\base\InvalidArgumentException;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends AppController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
     public function actionIndex()
     {
-        return $this->render('index');
+        $banner = Production::findOne(['degree'=>1]);
+        $productions = Production::find()->where(['status'=>1])->all();
+
+        return $this->render('index', compact('banner', 'productions'));
 
     }
     public function actionLogin()
@@ -108,14 +61,52 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionEmail()
+//    public function actionEmail()
+//    {
+//        Yii::$app->mailer->compose()
+//            ->setFrom('oraxmatov2707@gmail.com')
+//            ->setTo('oraxmatov2707@gmail.com')
+//            ->setSubject('Shop.loc')
+//            ->setHtmlBody('<b>Pochta bordi</b>')
+//            ->send();
+//    }
+
+    public function actionContact()
     {
-        Yii::$app->mailer->compose()
-            ->setFrom('oraxmatov2707@gmail.com')
-            ->setTo('oraxmatov2707@gmail.com')
-            ->setSubject('Shop.loc')
-            ->setHtmlBody('<b>Pochta bordi</b>')
-            ->send();
+       $model = new Contacts();
+       $config = Config::findOne(2);
+       if($model->load(Yii::$app->request->post()) && $model->save()){
+           Yii::$app->session->setFlash('success', 'Your message has been successfully saved!');
+           return $this->goHome();
+       }
+
+        return $this->render('contact', compact('model', 'config'));
+
+    }
+
+    public function actionProfile()
+    {
+        $restPassword = new ResetPassword();
+
+        if ($restPassword->load(Yii::$app->request->post()) && $restPassword->validate()){
+
+            if($restPassword->password != $restPassword->restPassword){
+
+                Yii::$app->session->setFlash('denger', 'Passwords do not match');
+                return $this->redirect(['site/profile']);
+            }
+
+            $user = User::findOne(Yii::$app->user->getId());
+            $user->password_hash = Yii::$app->security->generatePasswordHash($restPassword->password);
+            $user->save();
+
+            Yii::$app->session->setFlash('success', 'Success');
+            return $this->redirect(['site/profile']);
+        }
+
+        return $this->render('profile', [
+            'model' => $restPassword,
+        ]);
     }
 
 }

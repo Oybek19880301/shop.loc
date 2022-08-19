@@ -1,248 +1,432 @@
 <?php
-  $this->title = 'Shop';
+/**@var $banner \frontend\controllers\SiteController*/
+/**@var $productions \frontend\controllers\SiteController*/
+use frontend\models\Category;
+use yii\helpers\Url;
+
+$this->title = 'Shop';
 ?>
 
-<div class="layout_padding collection_section">
+<main class="site-main">
     <div class="container">
-        <h1 class="new_text"><strong>New  Collection</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-        <div class="collection_section_2">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="about-img">
-                        <button class="new_bt">New</button>
-                        <div class="shoes-img"><img src="template/images/shoes-img1.png"></div>
-                        <p class="sport_text">Men Sports</p>
-                        <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
-                        <div class="star_icon">
-                            <ul>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <button class="seemore_bt">See More</button>
-                </div>
-                <div class="col-md-6">
-                    <div class="about-img2">
-                        <div class="shoes-img2"><img src="template/images/shoes-img2.png"></div>
-                        <p class="sport_text">Men Sports</p>
-                        <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
-                        <div class="star_icon">
-                            <ul>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <?php if (Yii::$app->session->hasFlash('success')):?>
+            <div class="alert alert-success alert-dismissible mt-4 mb-4">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><?= Yii::$app->session->getFlash('success')?></strong>
             </div>
-        </div>
+        <?php endif;?>
     </div>
-</div>
-<div class="collection_section">
+  <!--================ Hero banner start =================-->
+  <section class="hero-banner">
     <div class="container">
-        <h1 class="new_text"><strong>Racing Boots</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-    </div>
-</div>
-<div class="collectipn_section_3 layuot_padding">
-    <div class="container">
-        <div class="racing_shoes">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="shoes-img3"><img src="template/images/shoes-img3.png"></div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sale_text"><strong>Sale <br><span style="color: #0a0506;">JOGING</span> <br>SHOES</strong></div>
-                    <div class="number_text"><strong>$ <span style="color: #0a0506">100</span></strong></div>
-                    <button class="seemore">See More</button>
-                </div>
-            </div>
+      <div class="row no-gutters align-items-center pt-60px">
+        <div class="col-5 d-none d-sm-block">
+          <div class="hero-banner__img">
+            <img class="img-fluid" src="/upload/<?= $banner['default_img']?>" alt="">
+          </div>
         </div>
-    </div>
-    <div class="collection_section layout_padding">
-        <div class="container">
-            <h1 class="new_text"><strong>New Arrivals Products</strong></h1>
-            <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+          <div class="hero-banner__content">
+            <h4><?= $banner['price']?>UZS</h4>
+            <h4><?= $banner['name']?></h4>
+            <p><?= Category::findOne($banner['category_id'])->name?></p>
+            <a class="button button-hero" href="<?=Url::to(['productions/order', 'id'=>$banner['id']])?>">Shopping</a>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="layout_padding gallery_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="best_shoes">
-                        <p class="best_text">Best Shoes </p>
-                        <div class="shoes_icon"><img src="template/images/shoes-img4.png"></div>
-                        <div class="star_text">
-                            <div class="left_part">
-                                <ul>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                </ul>
-                            </div>
-                            <div class="right_part">
-                                <div class="shoes_price">$ <span style="color: #ff4e5b;">60</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="best_shoes">
-                        <p class="best_text">Best Shoes </p>
-                        <div class="shoes_icon"><img src="template/images/shoes-img5.png"></div>
-                        <div class="star_text">
-                            <div class="left_part">
-                                <ul>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                </ul>
-                            </div>
-                            <div class="right_part">
-                                <div class="shoes_price">$ <span style="color: #ff4e5b;">400</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="best_shoes">
-                        <p class="best_text">Best Shoes </p>
-                        <div class="shoes_icon"><img src="template/images/shoes-img6.png"></div>
-                        <div class="star_text">
-                            <div class="left_part">
-                                <ul>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                </ul>
-                            </div>
-                            <div class="right_part">
-                                <div class="shoes_price">$ <span style="color: #ff4e5b;">50</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="best_shoes">
-                        <p class="best_text">Sports Shoes</p>
-                        <div class="shoes_icon"><img src="template/images/shoes-img7.png"></div>
-                        <div class="star_text">
-                            <div class="left_part">
-                                <ul>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                </ul>
-                            </div>
-                            <div class="right_part">
-                                <div class="shoes_price">$ <span style="color: #ff4e5b;">70</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="best_shoes">
-                        <p class="best_text">Sports Shoes</p>
-                        <div class="shoes_icon"><img src="template/images/shoes-img8.png"></div>
-                        <div class="star_text">
-                            <div class="left_part">
-                                <ul>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                </ul>
-                            </div>
-                            <div class="right_part">
-                                <div class="shoes_price">$ <span style="color: #ff4e5b;">100</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="best_shoes">
-                        <p class="best_text">Sports Shoes</p>
-                        <div class="shoes_icon"><img src="template/images/shoes-img9.png"></div>
-                        <div class="star_text">
-                            <div class="left_part">
-                                <ul>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="template/images/star-icon.png"></a></li>
-                                </ul>
-                            </div>
-                            <div class="right_part">
-                                <div class="shoes_price">$ <span style="color: #ff4e5b;">90</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="buy_now_bt">
-                <button class="buy_text">Buy Now</button>
-            </div>
-        </div>
-    </div>
-    <div class="layout_padding contact_section">
-        <div class="container">
-            <h1 class="new_text"><strong>Contact Now</strong></h1>
-        </div>
-        <div class="container-fluid ram">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="email_box">
-                        <div class="input_main">
-                            <div class="container">
-                                <form action="/action_page.php">
-                                    <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Name" name="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Phone Numbar" name="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Email" name="Email">
-                                    </div>
+  </section>
+  <!--================ Hero banner start =================-->
 
-                                    <div class="form-group">
-                                        <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="send_btn">
-                                <button class="main_bt">Send</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="shop_banner">
-                        <div class="our_shop">
-                            <button class="out_shop_bt">Our Shop</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!--================ Hero Carousel start =================-->
+  <section class="section-margin ">
+    <div class="owl-carousel owl-theme hero-carousel">
+        <?php foreach ($productions as $production):?>
+            <div class="hero-carousel__slide">
+                <img src="/upload/<?= $production['default_img']?>" alt="" class="img-fluid" style="height: 350px;">
+                <a href="<?=Url::to(['productions/order', 'id'=>$production['id']])?>" class="hero-carousel__slideOverlay">
+                  <h3><?= $production['name']?></h3>
+                  <p><?= $production['price']?>UZS</p>
+                </a>
+             </div>
+        <?php endforeach;?>
     </div>
+  </section>
+  <!--================ Hero Carousel end =================-->
+
+  <!-- ================ trending product section start ================= -->
+  <section class="section-margin calc-60px">
+    <div class="container">
+      <div class="section-intro pb-60px">
+        <p>Popular Item in the market</p>
+        <h2>Trending <span class="section-intro__style">Product</span></h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product1.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Accessories</p>
+              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product2.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Beauty</p>
+              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product3.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Decor</p>
+              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product4.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Decor</p>
+              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product5.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Accessories</p>
+              <h4 class="card-product__title"><a href="single-product.html">Man Office Bag</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product6.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Kids Toy</p>
+              <h4 class="card-product__title"><a href="single-product.html">Charging Car</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product7.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Accessories</p>
+              <h4 class="card-product__title"><a href="single-product.html">Blutooth Speaker</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="card-img" src="img/product/product8.png" alt="">
+              <ul class="card-product__imgOverlay">
+                <li><button><i class="ti-search"></i></button></li>
+                <li><button><i class="ti-shopping-cart"></i></button></li>
+                <li><button><i class="ti-heart"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p>Kids Toy</p>
+              <h4 class="card-product__title"><a href="#">Charging Car</a></h4>
+              <p class="card-product__price">$150.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ trending product section end ================= -->
+
+
+  <!-- ================ offer section start ================= -->
+  <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5">
+          <div class="offer__content text-center">
+            <h3>Up To 50% Off</h3>
+            <h4>Winter Sale</h4>
+            <p>Him she'd let them sixth saw light</p>
+            <a class="button button--active mt-3 mt-xl-4" href="#">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ offer section end ================= -->
+
+  <!-- ================ Best Selling item  carousel ================= -->
+  <section class="section-margin calc-60px">
+    <div class="container">
+      <div class="section-intro pb-60px">
+        <p>Popular Item in the market</p>
+        <h2>Best <span class="section-intro__style">Sellers</span></h2>
+      </div>
+      <div class="owl-carousel owl-theme" id="bestSellerCarousel">
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product1.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Accessories</p>
+            <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product2.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Beauty</p>
+            <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product3.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Decor</p>
+            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product4.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Decor</p>
+            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product1.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Accessories</p>
+            <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product2.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Beauty</p>
+            <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product3.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Decor</p>
+            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+
+        <div class="card text-center card-product">
+          <div class="card-product__img">
+            <img class="img-fluid" src="img/product/product4.png" alt="">
+            <ul class="card-product__imgOverlay">
+              <li><button><i class="ti-search"></i></button></li>
+              <li><button><i class="ti-shopping-cart"></i></button></li>
+              <li><button><i class="ti-heart"></i></button></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <p>Decor</p>
+            <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+            <p class="card-product__price">$150.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ Best Selling item  carousel end ================= -->
+
+  <!-- ================ Blog section start ================= -->
+  <section class="blog">
+    <div class="container">
+      <div class="section-intro pb-60px">
+        <p>Popular Item in the market</p>
+        <h2>Latest <span class="section-intro__style">News</span></h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="card card-blog">
+            <div class="card-blog__img">
+              <img class="card-img rounded-0" src="img/blog/blog1.png" alt="">
+            </div>
+            <div class="card-body">
+              <ul class="card-blog__info">
+                <li><a href="#">By Admin</a></li>
+                <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
+              </ul>
+              <h4 class="card-blog__title"><a href="single-blog.html">The Richland Center Shooping News and weekly shooper</a></h4>
+              <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
+              <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="card card-blog">
+            <div class="card-blog__img">
+              <img class="card-img rounded-0" src="img/blog/blog2.png" alt="">
+            </div>
+            <div class="card-body">
+              <ul class="card-blog__info">
+                <li><a href="#">By Admin</a></li>
+                <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
+              </ul>
+              <h4 class="card-blog__title"><a href="single-blog.html">The Shopping News also offers top-quality printing services</a></h4>
+              <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
+              <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="card card-blog">
+            <div class="card-blog__img">
+              <img class="card-img rounded-0" src="img/blog/blog3.png" alt="">
+            </div>
+            <div class="card-body">
+              <ul class="card-blog__info">
+                <li><a href="#">By Admin</a></li>
+                <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
+              </ul>
+              <h4 class="card-blog__title"><a href="single-blog.html">Professional design staff and efficient equipment you’ll find we offer</a></h4>
+              <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
+              <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ Blog section end ================= -->
+
+
+
+
+
+</main>

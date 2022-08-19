@@ -6,6 +6,7 @@ use backend\models\Orders;
 use backend\models\User;
 use common\models\LoginForm;
 
+use common\models\Roles;
 use Yii;
 use yii\web\Response;
 
@@ -42,6 +43,10 @@ class SiteController extends AuthController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if(Yii::$app->user->identity['role']==Roles::ROLE_USER){
+                Yii::$app->user->logout();
+                return $this->goHome();
+            }
             return $this->goBack();
         }
 

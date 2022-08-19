@@ -14,6 +14,8 @@ class Production extends Productions
         return [
             [['category_id', 'status', 'count', 'price', 'degree'], 'required'],
             [['category_id', 'status', 'count', 'price', 'degree', 'create_at', 'update_at'], 'integer'],
+            [['description'], 'required'],
+            [['description'], 'string'],
             [['name'], 'required'],
             [['name'], 'string', 'max' => 55],
             [['default_img'], 'required'],

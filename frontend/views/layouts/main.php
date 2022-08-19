@@ -3,15 +3,16 @@
 /** @var \yii\web\View $this */
 /** @var string $content */
 
-use common\widgets\Alert;
 use frontend\assets\AppAsset;
-use yii\bootstrap4\Breadcrumbs;
+use frontend\models\Category;
+use frontend\models\Config;
 use yii\bootstrap4\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
 
 AppAsset::register($this);
+
+$config = Config::findOne(2);
+$categories = Category::find()->asArray()->limit(4)->all();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -31,243 +32,154 @@ AppAsset::register($this);
 </head>
 <body class="main-layout">
 <?php $this->beginBody() ?>
-<div class="header_section">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="logo"><a href="#"><img src="template/images/logo.png"></a></div>
-            </div>
-            <div class="col-sm-9">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link" href="<?=Url::home()?>">Home</a>
-                            <a class="nav-item nav-link" href="collection.html">Category</a>
-                            <a class="nav-item nav-link" href="shoes.html">Shoes</a>
-                            <a class="nav-item nav-link" href="racing boots.html">Racing Boots</a>
-                            <a class="nav-item nav-link" href="contact.html">Contact</a>
-                            <a class="nav-item nav-link last" href="#"><img src="template/images/search_icon.png"></a>
-                            <a class="nav-item nav-link last" href="contact.html"><img src="template/images/shop_icon.png"></a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="banner_section">
-        <div class="container-fluid">
-            <section class="slide-wrapper">
-                <div class="container-fluid">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                            <li data-target="#myCarousel" data-slide-to="3"></li>
-                        </ol>
+<!--================ Start Header Menu Area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand logo_h" href="<?= Url::home()?>"><img src="template/img/logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <li class="nav-item active"><a class="nav-link" href="<?= Url::home()?>"><?=Yii::t('app', 'home')?></a></li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="<?=Url::to(['productions/index'])?>" class="nav-link " ><?=Yii::t('app', 'all_productions')?></a>
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false"><?=Yii::t('app', 'categories')?></a>
+                            <ul class="dropdown-menu">
+                                <?php foreach ($categories as $category):?>
+                                   <li class="nav-item"><a class="nav-link" href="<?= Url::to(['productions/category', 'id'=>$category['id']])?>"><?= $category['name']?></a></li>
+                                <?php endforeach;?>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="<?= Url::to(['site/contact'])?>"><?=Yii::t('app', 'contact')?></a></li>
+                    </ul>
 
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-sm-2 padding_0">
-                                        <p class="mens_taital">Men Shoes</p>
-                                        <div class="page_no">0/2</div>
-                                        <p class="mens_taital_2">Men Shoes</p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="banner_taital">
-                                            <h1 class="banner_text">New Running Shoes </h1>
-                                            <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
-                                            <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                            <button class="buy_bt">Buy Now</button>
-                                            <button class="more_bt">See More</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="shoes_img"><img src="template/images/running-shoes.png"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-sm-2 padding_0">
-                                        <p class="mens_taital">Men Shoes</p>
-                                        <div class="page_no">0/2</div>
-                                        <p class="mens_taital_2">Men Shoes</p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="banner_taital">
-                                            <h1 class="banner_text">New Running Shoes </h1>
-                                            <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
-                                            <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                            <button class="buy_bt">Buy Now</button>
-                                            <button class="more_bt">See More</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="shoes_img"><img src="template/images/running-shoes.png"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-sm-2 padding_0">
-                                        <p class="mens_taital">Men Shoes</p>
-                                        <div class="page_no">0/2</div>
-                                        <p class="mens_taital_2">Men Shoes</p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="banner_taital">
-                                            <h1 class="banner_text">New Running Shoes </h1>
-                                            <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
-                                            <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                            <button class="buy_bt">Buy Now</button>
-                                            <button class="more_bt">See More</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="shoes_img"><img src="template/images/running-shoes.png"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-sm-2 padding_0">
-                                        <p class="mens_taital">Men Shoes</p>
-                                        <div class="page_no">0/2</div>
-                                        <p class="mens_taital_2">Men Shoes</p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="banner_taital">
-                                            <h1 class="banner_text">New Running Shoes </h1>
-                                            <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
-                                            <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                            <button class="buy_bt">Buy Now</button>
-                                            <button class="more_bt">See More</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="shoes_img"><img src="template/images/running-shoes.png"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ul class="nav-shop">
+                        <li class="nav-item"><button><i class="ti-search"></i></button></li>
+                        <li class="nav-item"><a href="<?= Url::to(['site/profile'])?>"><button><i class="ti-shopping-cart"></i></button></a></li>
+                        <li class="nav-item"><a href="/uz">uz</a></li>/
+                        <li class="nav-item"><a href="/ru">ru</a></li>/
+                        <li class="nav-item"><a href="/en">en</a></li>
+                        <?php if (Yii::$app->user->isGuest):?>
+                            <li class="nav-item"><a href="<?= Url::to(['site/login'])?>"><?=Yii::t('app', 'login')?></a></li>
+                        <?php endif;?>
+                        <?php if (!Yii::$app->user->isGuest):?>
+                          <?= Yii::$app->user->identity->email?>
+                        <?=
+                            Html::a('Logout', ['site/logout'],[
+                                'data' => [
+                                    'confirm' => 'Haqiqatan ham chiqmoqchimisiz?',
+                                    'method' => 'post',
+                                ],
+                            ])
+                            ?>
+                        <?php endif;?>
+                    </ul>
                 </div>
-            </section>
-        </div>
+            </div>
+        </nav>
     </div>
-</div>
-
+</header>
+<!--================ End Header Menu Area =================-->
 <?=$content?>
-<div class="section_footer">
-    <div class="container">
-        <div class="mail_section">
-            <div class="row">
-                <div class="col-sm-6 col-lg-2">
-                    <div><a href="#"><img src="template/images/footer-logo.png"></a></div>
+<!--================ Start footer Area  =================-->
+<footer class="footer">
+    <div class="footer-area">
+        <div class="container">
+            <div class="row section_gap">
+                <div class="offset-sm-1 col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h4 class="footer_title">Social Media</h4>
+                        <p>
+                           <ul class="list">
+                            <li><a href="https://t.me/<?=$config['telegram']?>">Telegram</a></li>
+                            <li><a href="<?=$config['instagram']?>">Instagram</a></li>
+                            <li><a href="<?=$config['youtube']?>">Youtube</a></li>
+                            <li><a href="<?=$config['facebook']?>">Facebook</a></li>
+
+                        </ul>
+                        </p>
+                        <p>
+
+                        </p>
+                    </div>
                 </div>
-                <div class="col-sm-6 col-lg-2">
-                    <div class="footer-logo"><img src="template/images/phone-icon.png"><span class="map_text">(71) 1234567890</span></div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="footer-logo"><img src="template/images/email-icon.png"><span class="map_text">Demo@gmail.com</span></div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="social_icon">
-                        <ul>
-                            <li><a href="#"><img src="template/images/face-icon.png"></a></li>
-                            <li><a href="#"><img src="template/images/tele-icon.png"></a></li>
-                            <li><a href="#"><img src="template/images/in-icon.png"></a></li>
-                            <li><a href="#"><img src="template/images/youtube-icon.png"></a></li>
+                <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h4 class="footer_title">Quick Links</h4>
+                        <ul class="list">
+                            <li><a href="<?= Url::home()?>">Home</a></li>
+                            <li><a href="<?= Url::to(['productions/index'])?>">All Productions</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="<?= Url::to(['site/contact'])?>">Contact</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-2"></div>
-            </div>
-        </div>
-        <div class="footer_section_2">
-            <div class="row">
-                <div class="col-sm-4 col-lg-2">
-                    <p class="dummy_text"> ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur  ipsum dolor sit amet,</p>
-                </div>
-                <div class="col-sm-4 col-lg-2">
-                    <h2 class="shop_text">Address </h2>
-                    <div class="image-icon"><img src="template/images/map-icon.png"><span class="pet_text">No 40 Baria Sreet 15/2 NewYork City, NY, United States.</span></div>
-                </div>
-                <div class="col-sm-4 col-md-6 col-lg-3">
-                    <h2 class="shop_text">Our Company </h2>
-                    <div class="delivery_text">
-                        <ul>
-                            <li>Delivery</li>
-                            <li>Legal Notice</li>
-                            <li>About us</li>
-                            <li>Secure payment</li>
-                            <li>Contact us</li>
+                <div class=" col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget instafeed">
+                        <h4 class="footer_title">Gallery</h4>
+                        <ul class="list instafeed d-flex flex-wrap">
+                            <li><img src="template/img/gallery/r1.jpg" alt=""></li>
+                            <li><img src="template/img/gallery/r2.jpg" alt=""></li>
+                            <li><img src="template/img/gallery/r3.jpg" alt=""></li>
+                            <li><img src="template/img/gallery/r5.jpg" alt=""></li>
+                            <li><img src="template/img/gallery/r7.jpg" alt=""></li>
+                            <li><img src="template/img/gallery/r8.jpg" alt=""></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <h2 class="adderess_text">Products</h2>
-                    <div class="delivery_text">
-                        <ul>
-                            <li>Prices drop</li>
-                            <li>New products</li>
-                            <li>Best sales</li>
-                            <li>Contact us</li>
-                            <li>Sitemap</li>
-                        </ul>
+                <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h4 class="footer_title">Contact Us</h4>
+                        <div class="ml-40">
+                            <p class="sm-head">
+                                <span class="fa fa-location-arrow"></span>
+                                Head Office
+                            </p>
+                            <p><?= $config['address']?></p>
+
+                            <p class="sm-head">
+                                <span class="fa fa-phone"></span>
+                                Phone Number
+                            </p>
+                            <p>
+                               <?= $config['phone']?>
+                            </p>
+
+                            <p class="sm-head">
+                                <span class="fa fa-envelope"></span>
+                                Email
+                            </p>
+                            <p>
+                               <?= $config['email']?>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-lg-2">
-                    <h2 class="adderess_text">Newsletter</h2>
-                    <div class="form-group">
-                        <input type="text" class="enter_email" placeholder="Enter Your email" name="Name">
-                    </div>
-                    <button class="subscribr_bt">Subscribe</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="copyright">2019 All Rights Reserved. <a href="https://html.design">Free html  Templates</a></div>
-    <script>
-        $(document).ready(function(){
-            $(".fancybox").fancybox({
-                openEffect: "none",
-                closeEffect: "none"
-            });
 
-
-            $('#myCarousel').carousel({
-                interval: false
-            });
-
-            //scroll slides on swipe for touch enabled devices
-
-            $("#myCarousel").on("touchstart", function(event){
-
-                var yClick = event.originalEvent.touches[0].pageY;
-                $(this).one("touchmove", function(event){
-
-                    var yMove = event.originalEvent.touches[0].pageY;
-                    if( Math.floor(yClick - yMove) > 1 ){
-                        $(".carousel").carousel('next');
-                    }
-                    else if( Math.floor(yClick - yMove) < -1 ){
-                        $(".carousel").carousel('prev');
-                    }
-                });
-                $(".carousel").on("touchend", function(){
-                    $(this).off("touchmove");
-                });
-            });
-    </script>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row d-flex">
+                <p class="col-lg-12 footer-text text-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://t.me/oybekIT" target="_blank">Telegram manzilim</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--================ End footer Area  =================-->
 <?php $this->endBody() ?>
 </body>
 </html>

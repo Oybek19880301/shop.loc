@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
-//            'name',
+            'name',
             'phone',
             'email:email',
 //            'message:ntext',
@@ -39,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'create_at',
-//            'update_at',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Contacts $model, $key, $index, $column) {

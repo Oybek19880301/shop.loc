@@ -14,7 +14,6 @@ use Yii;
  * @property string|null $message
  * @property int|null $status
  * @property int|null $create_at
- * @property int|null $update_at
  */
 class Contact extends \yii\db\ActiveRecord
 {
@@ -33,7 +32,7 @@ class Contact extends \yii\db\ActiveRecord
     {
         return [
             [['message'], 'string'],
-            [['status', 'create_at', 'update_at'], 'integer'],
+            [['status', 'create_at'], 'integer'],
             [['name'], 'string', 'max' => 55],
             [['phone'], 'string', 'max' => 13],
             [['email'], 'string', 'max' => 255],
@@ -47,13 +46,12 @@ class Contact extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Nomi',
+            'fullName' => 'Nomi',
             'phone' => 'Telefon',
             'email' => 'Email',
             'message' => 'Xabar mazmuni',
             'status' => 'Holati',
             'create_at' => 'Yaratilgan vaqti',
-            'update_at' => 'Yangilangan vaqti',
         ];
     }
 }

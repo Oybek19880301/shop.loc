@@ -35,13 +35,26 @@ date_default_timezone_set('Asia/Tashkent');
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'name',
+      //      'id',
+            [
+                'attribute'  => 'name',
+                'format'     => 'raw',
+                'value'      => function($model){
+                     return $model->name;
+                }
+            ],
             [
                 'attribute' => 'category_id',
                 'format'    => 'raw',
                 'value' => function($model){
                      return \backend\models\Categories::findOne(['id'=>$model->category_id])->name;
+                }
+            ],
+            [
+                'attribute' => 'description',
+                'format'    => 'raw',
+                'value'     => function($model){
+                    return $model->description;
                 }
             ],
             [
@@ -112,6 +125,7 @@ date_default_timezone_set('Asia/Tashkent');
                     return "<img src='/upload/$model->default_img' style='width: 400px; height: 300px; object-fit: cover'>";
                 }
             ],
+
         ],
     ]) ?>
 

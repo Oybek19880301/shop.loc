@@ -12,4 +12,15 @@ class Category extends \common\models\Category
         ];
     }
 
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Nomi',
+            'create_at' => 'Kiritilgan vaqti',
+            'update_at' => 'Yangilangilgan vaqti',
+        ];
+    }
+
 }

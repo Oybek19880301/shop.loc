@@ -12,23 +12,13 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'timezone'   => 'Asia/Tashkent',
+    'language'=>'uz',
     'components' => [
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false,
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'port' => '587',
-                'username' => 'oraxmatov2707@gmail.com',
-                'password' => 'wbwmfvszxvbijryb',
-                'encryption' => 'tls',
-            ],
-        ],
         'request' => [
             'baseUrl' => '',
             'csrfParam' => '_csrf-frontend',
         ],
+
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => false,
@@ -56,7 +46,19 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'class'    =>'codemix\localeurls\UrlManager',
+            'languages' => ['uz','ru','en'],
             'rules' => [
+                '<controller:\w+>/action:\w+>/' => '<controller>/<action>',
+
+            ],
+        ],
+        'i18n' =>[
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@frontend/language',
+                ],
             ],
         ],
 

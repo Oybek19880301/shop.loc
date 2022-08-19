@@ -15,6 +15,7 @@ use Yii;
  * @property int|null $count
  * @property int|null $price
  * @property int|null $degree
+ * @property string|null $description
  * @property int|null $create_at
  * @property int|null $update_at
  *
@@ -38,6 +39,7 @@ class Productions extends \yii\db\ActiveRecord
     {
         return [
             [['category_id', 'status', 'count', 'price', 'degree', 'create_at', 'update_at'], 'integer'],
+            [['description'], 'string'],
             [['name'], 'string', 'max' => 55],
             [['default_img'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -58,6 +60,7 @@ class Productions extends \yii\db\ActiveRecord
             'count' => 'Soni',
             'price' => 'Narxi',
             'degree' => 'Bannerga chiqishi',
+            'description' => 'Mahsulot haqida',
             'create_at' => 'Yaratilgan vaqti',
             'update_at' => 'Yangilangan vaqti',
         ];

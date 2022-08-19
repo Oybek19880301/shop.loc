@@ -40,7 +40,7 @@ class ProductionSearch extends Production
      */
     public function search($params)
     {
-        $query = Production::find();
+        $query = Production::find()->orderBy(['id'=>SORT_DESC]);
 
         // add conditions that should always apply here
 

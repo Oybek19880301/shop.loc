@@ -28,6 +28,7 @@ class m220731_195826_create_table_all extends Migration
             'count'       => $this->integer()->null(),
             'price'       => $this->integer()->null(),
             'degree'      => $this->integer()->null(),
+            'description' => $this->text()->null(),
             'create_at'   => $this->integer()->null(),
             'update_at'   => $this->integer()->null(),
         ]);
@@ -42,13 +43,13 @@ class m220731_195826_create_table_all extends Migration
 
         $this->createTable('contact',[
             'id'         => $this->primaryKey(),
-            'name'       => $this->string(55)->null(),
+            'fullName'       => $this->string(55)->null(),
             'phone'      => $this->string(13)->null(),
             'email'      => $this->string(255)->null(),
             'message'    => $this->text()->null(),
             'status'     => $this->integer()->defaultValue(0),
             'create_at'  => $this->integer()->null(),
-            'update_at'  => $this->integer()->null(),
+
         ]);
 
         $this->createTable('config',[

@@ -17,7 +17,7 @@ class ContactsSearch extends Contacts
     public function rules()
     {
         return [
-            [['id', 'status', 'create_at', 'update_at'], 'integer'],
+            [['id', 'status', 'create_at'], 'integer'],
             [['name', 'phone', 'email', 'message'], 'safe'],
         ];
     }
@@ -40,7 +40,7 @@ class ContactsSearch extends Contacts
      */
     public function search($params)
     {
-        $query = Contacts::find();
+        $query = Contacts::find()->orderBy(['status'=>SORT_ASC,'id'=>SORT_DESC]);
 
         // add conditions that should always apply here
 
@@ -61,7 +61,6 @@ class ContactsSearch extends Contacts
             'id' => $this->id,
             'status' => $this->status,
             'create_at' => $this->create_at,
-            'update_at' => $this->update_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
