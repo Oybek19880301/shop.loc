@@ -21,7 +21,7 @@
                     ['label' => 'Shop Menu', 'options' => ['class' => 'header']],
                     ['label' => 'Mahsulotlar', 'icon' => 'fas fa-shopping-cart', 'url' => ['production/index']],
                     ['label' => 'Kategoriyalar', 'icon' => 'fas fa-cart-plus', 'url' => ['category/index']],
-                    ['label' => 'Konfiguratsiyalr', 'icon' => ' fa-gears (alias)', 'url' => ['configs/update?id=2']],
+                    ['label' => 'Konfiguratsiyalr', 'icon' => ' fa-gears (alias)', 'url' => ['configs/update?id=5']],
                     ['label' => 'Xabarlar', 'icon' => ' fa-envelope-o', 'url' => ['contacts/index']],
                     ['label' => 'Foydalanuvchilar', 'icon' => ' fa-users', 'url' => ['site/users']],
                     ['label' => 'Buyurtmalar', 'icon' => 'fa fa-flag-o', 'url' => ['orders/index']],
